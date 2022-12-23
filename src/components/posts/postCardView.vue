@@ -1,9 +1,12 @@
 <template>
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">{{ post.title }}</h5>
-        <p class="card-text">{{ post.body }}</p>
-        <a href="#" class="btn btn-primary">read more</a>
+        <h5 class="card-title">{{ post.title }} / {{ post.id }}</h5>
+        <p class="card-text">{{ post.body }} </p>
+        <router-link :to="{ name : 'showPost' , params : { id: post.id} }" >
+        read more
+        </router-link> 
+   
       </div>
     </div>
 </template>

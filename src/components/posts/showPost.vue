@@ -1,10 +1,39 @@
 <template>
+<div v-if="loading" class="snipper-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div v-else>
   <h1>Show Post</h1>
+<h1> Title: {{ post.title }} / {{ post.id }}</h1>
+<p>Description: {{ post.body }}</p>
+</div>
 </template>
 
 <script>
-export default {
+import {useRoute} from "vue-router";
+import axios from 'axios';
+import {ref} from 'vue';
 
+export default {
+    name:'showPost',
+setup() {
+    const post = ref({});
+    const route = useRoute();
+
+    function getPost() {
+    axios
+        .get(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`)
+        .then(function(response){
+            post.value = response.data;
+        })
+         .catch(e => {
+      this.errors.push(e)
+    })
+    }
+     getPost();
+    return{post,route};
+
+}
 }
 </script>
 
