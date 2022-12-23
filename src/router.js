@@ -7,9 +7,11 @@ import createPost from "./components/posts/createPost.vue";
 
 const routes = [{ path: "/", name: "HomePage", component: Home },
   {path: "/posts",name: "postList",component: posts,
- children:[{ path: "createPost", name: "createPost", component: createPost }]},
+ children:[{ path: ":id", name: "postPage", component: showPost },
+ {path: "createPost", name: "createPost", component: createPost }]},
   {path: "/users",name: "userList",component: users,
-  children:[{ path: "createUser", name: "createUser", component: createUser }],
+  children:[{ path: "createUser", name: "createUser", component: createUser },
+  { path: ":id", name: "userPage", component: showUser }],
   },
 ];
 const router = createRouter({
