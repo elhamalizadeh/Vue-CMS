@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>List of Posts</h1>
-    <div class="row">
+    <div class="row g-3">
     <div v-if="loading" class="spinner-border" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
@@ -22,11 +22,13 @@ export default {
   name: "postList",
   setup() {
     const posts = ref([]);
+    const loading = ref(true);
     function getPosts() {
       axios
         .get("https://jsonplaceholder.typicode.com/posts")
         .then(function (response) {
           posts.value = response.data;
+          loading.value = false;
         })
         .catch((e) => {
           this.errors.push(e);
@@ -34,7 +36,7 @@ export default {
     }
 
     getPosts();
-    return { posts };
+    return { posts,loading };
   },
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
 <div>
   <h1>Users List</h1>
-  <div class="row">
+  <div class="row g-3">
      <div class="col-sm-4"  v-for="user in users"  :key="user.id">
   <userCardView :user="user"/>
      </div>

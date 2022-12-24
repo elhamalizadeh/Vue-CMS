@@ -1,14 +1,19 @@
 <template>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{ user.name }} / {{ user.id }}</h5>
-        <p class="card-text">{{ user.address }} </p>
-        <router-link :to="{ name : 'ShowUser' , params : { id: user.id} }" >
-        Details...
-        </router-link> 
-   
-      </div>
-    </div>
+  
+    <div class="card" style="width: 18rem;">
+  <div class="card-header">
+    <router-link :to="{ name : 'ShowUser' , params : { id: user.id} }" >
+    {{ user.name }} 
+    </router-link>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">User Id: {{ user.id }}</li>
+    <li class="list-group-item">Username: {{ user.username }}</li>
+    <li class="list-group-item">Email: {{ user.email }}</li>
+    <li class="list-group-item">Email: {{ user.email }}</li>
+  </ul>
+</div>
+
 </template>
 
 
