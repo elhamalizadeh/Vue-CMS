@@ -1,18 +1,23 @@
 <template>
 <div>
   <h1>Users List</h1>
-  <router-view></router-view>
-  <div v-for="(user , id) in users" :key="id">
-    {{ user.name }} / {{ user.id }}
-  </div>
+  <div class="row">
+     <div class="col-sm-4"  v-for="user in users"  :key="user.id">
+  <userCardView :user="user"/>
+     </div>
+     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import {ref} from 'vue';
+import userCardView from './userCardView.vue';
 export default {
 name:'userList',
+components:{
+  userCardView
+},
 setup() {
     const users = ref([]);
     function getUsers(){
@@ -27,7 +32,6 @@ setup() {
         
     }
     getUsers();
-    console.log(users);
     return{users};
 }
 }

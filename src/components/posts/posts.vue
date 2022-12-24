@@ -1,11 +1,13 @@
 <template>
   <div class="container">
     <h1>List of Posts</h1>
+    <div class="row">
     <div v-if="loading" class="spinner-border" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
     <div v-else class="col-sm-4" v-for="post in posts" :key="post.id">
       <postCardView :post="post" />
+    </div>
     </div>
   </div>
 </template>
