@@ -7,7 +7,7 @@
           type="text"
           class="form-control"
           id="exampleFormControlInput1"
-          v-model="form.title"
+          v-model.lazy.trim="form.title"
         />
         <div class="form-text text-danger">{{ form.titleErrorText }}</div>
       </div>
@@ -17,7 +17,7 @@
           class="form-control"
           id="exampleFormControlTextarea1"
           rows="3"
-          v-model="form.body"
+          v-model.lazy.trim="form.body"
         ></textarea>
         <div class="form-text text-danger">{{ form.bodyErrorText }}</div>
       </div>
@@ -49,6 +49,14 @@ setup(props, { emit }){
       bodyErrorText: "",
     });
 
+function setInput() {
+      if (props.post !== undefined) {
+        form.title = props.post.title;
+        form.body = props.post.body;
+      }
+    }
+    setInput();
+    
      function validate() {
       if (form.title === "") {
         form.titleErrorText = "Title is required";

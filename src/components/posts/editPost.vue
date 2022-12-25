@@ -1,12 +1,18 @@
 <template>
-  <div class="container">
+<div class="container">
+ <div v-if="pageLoading" class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+
+
+  <div div v-else class="col-md-6">
     <h1>Edit Post</h1>
     <PostForm
     @formData="updatePost"
     :button-loading="loading" 
     :post="post"
     />
-  </div>
+  </div></div>
 </template>
 <script>
 
