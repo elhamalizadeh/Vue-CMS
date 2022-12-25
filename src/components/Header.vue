@@ -3,9 +3,7 @@
     <h1>Header</h1>
     <router-link :to="{name:'HomePage'}" id="links">Home</router-link>
      <router-link :to="{name:'userList'}" id="links">users</router-link>
-   <router-link :to="{name:'createUser'}" id="links">New User</router-link>
     <router-link :to="{name:'postList'}" id="links">Posts</router-link>
-    <router-link :to="{name:'createPost'}" id="links">New Post</router-link> 
     </div>
 </template>
 
