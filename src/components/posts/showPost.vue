@@ -6,6 +6,7 @@
   <h1>Show Post</h1>
 <h1> Title: {{ post.title }} / {{ post.id }}</h1>
 <p>Description: {{ post.body }}</p>
+<router-link :to="{name:'editPost'}" class="btn btn-primary">edit</router-link>
 </div>
 </template>
 
