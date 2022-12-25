@@ -6,7 +6,7 @@
   <h1>Show Post</h1>
 <h1> Title: {{ post.title }} / {{ post.id }}</h1>
 <p>Description: {{ post.body }}</p>
-<router-link to="" class="btn btn-danger">Delete</router-link>
+<button @click="deletePost" class="btn btn-danger me-2">Delete</button>
 <router-link :to="{name:'editPost'}" class="btn btn-primary">Edit</router-link>
 </div>
 </template>
@@ -15,6 +15,7 @@
 import {useRoute} from "vue-router";
 import axios from 'axios';
 import {ref} from 'vue';
+import Swal from "sweetalert2";
 
 export default {
     name:'showPost',
@@ -33,7 +34,23 @@ setup() {
     })
     }
      getPost();
-    return{post,route};
+
+     function deletePost(){
+    axios
+        .delete(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`)
+        .then(function(){
+            Swal.fire({
+            title: "Thanks!",
+            text: `Post ${route.params.id} deleted successfully`,
+            icon: "warning",
+            confirmButtonText: "Ok",
+          });
+        })
+         .catch(e => {
+      this.errors.push(e)
+    })
+    }
+    return{post,route,deletePost};
 
 }
 }
