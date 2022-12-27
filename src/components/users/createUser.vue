@@ -1,92 +1,101 @@
 <template>
   <h1>Create New User</h1>
   <div class="container">
-  <form @submit.prevent="Validate">
-<label class="form-label">Name:</label>
-<input type="text" v-model="form.name" class="form-control" />
-<div class="form-text text-danger">{{ form.ErrorText }}</div>
+<form @submit.prevent="validate">
+  <label>Name:</label>
+  <input type="text" v-model="form.name" class="form-control" />
+  <div class="form-text text-danger" >{{ form.nameErrorText }}</div>
 
-<label class="form-label">Street:</label>
-<input type="text" v-model="form.street" class="form-control" />
-<div class="form-text text-danger">{{ form.ErrorText }}</div>
+    <label>Family:</label>
+  <input type="text" v-model="form.family" class="form-control" />
+  <div class="form-text text-danger" >{{ form.familyErrorText }}</div>
 
-<label class="form-label">Suit:</label>
-<input type="text" v-model="form.suit" class="form-control" />
-<div class="form-text text-danger">{{ form.ErrorText }}</div>
+  <label>Email:</label>
+  <input type="email" v-model="form.email" class="form-control" />
+  <div class="form-text text-danger" >{{ form.emailErrorText }}</div>
 
-<label class="form-label">City:</label>
-<input type="text" v-model="form.city" class="form-control" />
-<div class="form-text text-danger">{{ form.ErrorText }}</div>
-
-<button type="submit" class="btn btn-success mb-3" >Save</button>
-  </form>
+<button type="submit" class="btn btn-success mb-3 mt-3">
+  <div
+          v-if="loading"
+          class="spinner-border spinner-border-sm"
+          role="status"
+        ></div>
+        Save</button>
+</form>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
+import axios from 'axios';
 import Swal from "sweetalert2";
 
 export default {
-name:'createUser',
-setup() {
-  const form = reactive({
-  name: "",
-  street: "",
-  suit:"",
-  city:"",
-  ErrorText: ""
-});
 
-function Validate(){
- if (form.name === ""){
-  form.ErrorText =" You should Fill it"
+setup(){
+const loading = ref(false);
+  const form = reactive ({
+    name : "",
+    family:"",
+    email:"",
+    nameErrorText:"",
+    familyErrorText:"",
+    emailErrorText:"",
+  })
+  function validate(){
+ if (form.name ===""){
+  form.nameErrorText = "name is required"
  }
  else {
-  form.ErrorText = "";
-
+  form.nameErrorText = ""
  }
-   if (form.name !=="" && form.street !="" ){
-        console.log("createuser is called");
-        createNewUser();
-      }
 
-//  if (form.name !=="" && form.street !="" ){
-//   createNewUser();
+  if (form.family ===""){
+  form.familyErrorText = "family is required"
+ }
+ else {
+  form.familyErrorText = ""
+ }
 
-//  }
-}
+  if (form.email ===""){
+  form.emailErrorText = "email is required"
+ }
+ else {
+  form.emailErrorText = ""
+ }
 
-function createNewUser(){
-  axios
-     .post("https://jsonplaceholder.typicode.com/users", {
-          name: form.name,
-          street: form.street,
-          userId: 1,
-        })
-        .then(function () {
-          //alert('created successfully')
-          console.log('created successfully');
-           Swal.fire({
+ if ( form.name !="" && form.family!="" && form.email!=""){
+  loading.value = true;
+   createUser();
+ }
+
+  }
+  
+  function createUser(){
+axios
+.post("https://jsonplaceholder.typicode.com/users",{
+name: form.name,
+family: form.family,
+email: form.email
+})
+.then(function(){
+    Swal.fire({
             title: "Thanks!",
             text: "User created successfully",
             icon: "success",
             confirmButtonText: "Ok",
           });
+          loading.value = false;
+})
+.catch(function(error){
+  console.log(error)
+});
+  }
 
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-        console.log(form.name, form.street, form.suit, form.city);
-    }
-    return{ form , Validate }
+  return{form, validate , loading}
 }
-
+  
 }
 </script>
-
 <style>
-
 </style>
