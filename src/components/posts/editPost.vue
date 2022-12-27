@@ -61,7 +61,7 @@ function getPost() {
 
           Swal.fire({
             title: "Thanks!",
-            text: "Post created successfully",
+            text: "Post updated successfully",
             icon: "success",
             confirmButtonText: "Ok",
           });
