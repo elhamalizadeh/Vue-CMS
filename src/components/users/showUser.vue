@@ -14,6 +14,8 @@
   </ul>
   </li>
 </ul>
+<button class="btn btn-danger me-3">Delete</button>
+<router-link :to="{name:'editUser'}" class="btn btn-primary"> Edit</router-link>
 </div>
 </template>
 

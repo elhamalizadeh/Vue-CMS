@@ -9,6 +9,7 @@ import createPost from "./components/posts/createPost.vue";
 import showPost from "./components/posts/showPost.vue";
 import TemplatePosts from './components/posts/TemplatePosts.vue';
 import editPost from './components/posts/editPost.vue';
+import editUser from './components/users/editUser.vue';
 
 const routes = [{ path: "/", name: "HomePage", component: Home },
 
@@ -21,7 +22,8 @@ const routes = [{ path: "/", name: "HomePage", component: Home },
   {path: "/users",name: "TemplateUsers",component: TemplateUsers,
   children:[{ path: "", name: "userList", component: users},
    { path: ":id", name: "ShowUser", component: showUser },
-   { path: "createUser", name: "createUser", component: createUser }
+   { path: "createUser", name: "createUser", component: createUser },
+   { path: "edit/:id", name: "editUser", component: editUser }
 ],
   },
 ];
