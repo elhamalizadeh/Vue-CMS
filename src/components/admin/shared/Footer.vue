@@ -1,6 +1,5 @@
 <template>
-<div class="" id="footer">
-    <h1>Footer</h1>
+<div class="fixed-bottom" id="footer">
     <div class="row">
         <div class="col-md-4">Description:Lorem ipsum dolor sit amet, consectetur adipiscing el
         </div>
@@ -18,8 +17,8 @@ name: 'FooterSection'
 
 <style>
 #footer{
-    background-color: blueviolet;
-    height:180px;
+    background-color: blue;
+    height:70px;
     color:white;
     padding-left:20px;
 }

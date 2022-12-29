@@ -1,25 +1,28 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "./components/Home.vue";
-import users from "./components/users/users.vue";
- import createUser from "./components/users/createUser.vue";
-import showUser from './components/users/showUser.vue';
-import TemplateUsers from './components/users/TemplateUsers.vue';
-import posts from "./components/posts/posts.vue";
-import createPost from "./components/posts/createPost.vue";
-import showPost from "./components/posts/showPost.vue";
-import TemplatePosts from './components/posts/TemplatePosts.vue';
-import editPost from './components/posts/editPost.vue';
-import editUser from './components/users/editUser.vue';
+import HomeAdmin from "./components/admin/HomeAdmin.vue";
+import HomeView from "./components/view/HomeView.vue";
 
-const routes = [{ path: "/", name: "HomePage", component: Home },
+import users from "./components/admin/users/users.vue";
+ import createUser from "./components/admin/users/createUser.vue";
+import showUser from './components/admin/users/showUser.vue';
+import TemplateUsers from './components/admin/users/TemplateUsers.vue';
+import posts from "./components/admin/posts/posts.vue";
+import createPost from "./components/admin/posts/createPost.vue";
+import showPost from "./components/admin/posts/showPost.vue";
+import TemplatePosts from './components/admin/posts/TemplatePosts.vue';
+import editPost from './components/admin/posts/editPost.vue';
+import editUser from './components/admin/users/editUser.vue';
 
-  {path: "/posts",name: "TemplatePosts",component: TemplatePosts,
+const routes = [{ path: "/admin", name: "HomeAdmin", component: HomeAdmin },
+{ path: "/", name: "HomeView", component: HomeView },
+
+  {path: "/admin/posts",name: "TemplatePosts",component: TemplatePosts,
  children:[{ path: "", name: "postList", component: posts },
  { path: ":id", name: "showPost", component: showPost },
  {path: "createPost", name: "createPost", component: createPost },
  {path: "edit/:id", name: "editPost", component: editPost }]},
  
-  {path: "/users",name: "TemplateUsers",component: TemplateUsers,
+  {path: "/admin/users",name: "TemplateUsers",component: TemplateUsers,
   children:[{ path: "", name: "userList", component: users},
    { path: ":id", name: "ShowUser", component: showUser },
    { path: "createUser", name: "createUser", component: createUser },
