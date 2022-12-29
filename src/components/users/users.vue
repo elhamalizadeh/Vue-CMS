@@ -1,6 +1,6 @@
 <template>
-<div class="container">
-  <h1>Users List</h1>
+<div class="container mb-5">
+  <h1>List Of Users</h1>
       <router-link :to="{name:'createUser'}" class="btn btn-dark mb-3">Create New User </router-link>
   <div class="row g-3">
      <div class="col-sm-4"  v-for="user in users"  :key="user.id">

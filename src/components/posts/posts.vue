@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mb-5">
     <h1>List of Posts</h1>
     <router-link :to="{name:'createPost'}" class="btn btn-dark mb-3">Create Post</router-link>
     <div class="row g-3">

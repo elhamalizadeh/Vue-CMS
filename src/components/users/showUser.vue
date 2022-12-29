@@ -14,7 +14,7 @@
   </ul>
   </li>
 </ul>
-<button class="btn btn-danger me-3">Delete</button>
+<button @click ="deleteUser" class="btn btn-danger me-3">Delete</button>
 <router-link :to="{name:'editUser'}" class="btn btn-primary"> Edit</router-link>
 </div>
 </template>
@@ -23,6 +23,7 @@
 import {useRoute} from "vue-router";
 import axios from 'axios';
 import {ref} from 'vue';
+import Swal from "sweetalert2";
 
 export default {
 name:'ShowUser',
@@ -35,13 +36,30 @@ setup() {
         .get(`https://jsonplaceholder.typicode.com/users/${route.params.id}`)
         .then(function(response){
             user.value = response.data;
+
         })
          .catch(e => {
       this.errors.push(e)
     })
     }
      getUser();
-    return{user,route};
+
+     function deleteUser(){
+       axios
+        .delete(`https://jsonplaceholder.typicode.com/users/${route.params.id}`)
+        .then(function(){
+              Swal.fire({
+            title: "Thanks!",
+            text: "User updated successfully",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        })
+         .catch(e => {
+      this.errors.push(e)
+    })
+     }
+    return{user,route, deleteUser};
 
 }
 }
